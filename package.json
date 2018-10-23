@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "heroku-postbuild": "npm install"
+    "heroku-postbuild": "export NODE_ENV=prod && npm install"
   },
   "engines": {
     "node": "8.9.3",

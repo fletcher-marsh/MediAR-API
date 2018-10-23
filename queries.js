@@ -6,7 +6,14 @@ var options = {
 };
 
 var pgp = require('pg-promise')(options);
-var connectionString = 'postgres://localhost:5432';
+
+var connectionString;
+if (process.env.NODE_ENV === "prod") {
+  connectionString = process.env.DATABASE_URL;
+} else {
+  connectionString = 'postgres://localhost:5432/mediar';
+}
+
 var db = pgp(connectionString);
 
 
