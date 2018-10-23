@@ -28,8 +28,7 @@ function getAllScans(req, res, next) {
       res.status(200)
         .json({
           status: 'success',
-          data: data,
-          message: 'Retrieved ALL Scans'
+          data: data
         });
     })
     .catch(function (err) {
@@ -44,8 +43,7 @@ function getSingleScan(req, res, next) {
       res.status(200)
         .json({
           status: 'success',
-          data: data,
-          message: 'Retrieved ALL Scans'
+          data: data
         });
     })
     .catch(function (err) {
@@ -60,8 +58,7 @@ function createScan(req, res, next) {
     .then(function () {
       res.status(200)
         .json({
-          status: 'success',
-          message: 'Inserted one scan'
+          status: 'success'
         });
     })
     .catch(function (err) {
@@ -76,8 +73,7 @@ function updateScan(req, res, next) {
     .then(function () {
       res.status(200)
         .json({
-          status: 'success',
-          message: 'Updated Scan'
+          status: 'success'
         });
     })
     .catch(function (err) {
@@ -92,8 +88,7 @@ function removeScan(req, res, next) {
       /* jshint ignore:start */
       res.status(200)
         .json({
-          status: 'success',
-          message: `Removed ${result.rowCount} Scan`
+          status: 'success'
         });
       /* jshint ignore:end */
     })
