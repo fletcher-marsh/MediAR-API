@@ -6,7 +6,7 @@ var options = {
 };
 
 var pgp = require('pg-promise')(options);
-var connectionString = 'postgres://localhost:5432/mediar';
+var connectionString = 'postgres://localhost:5000/mediar';
 var db = pgp(connectionString);
 
 
