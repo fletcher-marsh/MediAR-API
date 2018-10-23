@@ -8,7 +8,7 @@ var options = {
 var pgp = require('pg-promise')(options);
 
 var connectionString;
-if (process.env.NODE_ENV === "prod") {
+if (process.env.NODE_ENV === "production") {
   connectionString = 'postgres://ipdbyoxmmnzdyn:0d63d49d3dea6c50cf524e1f7e0153f20ea30108c024c48263d5f3d751b243a5@ec2-107-20-211-10.compute-1.amazonaws.com:5432/ddrpd50b0fhsgn';
 } else {
   connectionString = 'postgres://localhost:5432/mediar';
