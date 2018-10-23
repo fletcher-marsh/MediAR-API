@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "heroku-postbuild": "npm install"
+    "heroku-postbuild": "npm install && cat ./migrate.sql | heroku pg:psql"
   },
   "engines": {
     "node": "8.9.3",
@@ -18,6 +18,7 @@
     "http-errors": "~1.6.2",
     "jade": "~1.11.0",
     "morgan": "~1.9.0",
+    "pg": "^7.5.0",
     "pg-promise": "^8.5.1"
   }
 }
