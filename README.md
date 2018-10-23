@@ -11,5 +11,7 @@ Node server to host an API for MediAR iOS app
 - Navigate to [http://localhost:3000/api/scans](http://localhost:3000/api/scans)
 
 ## Running on Heroku
-- CI should be set up: any commit that successfully lands on `master` should kick off a Heroku build/redeploy
+- Install Heroku: `sudo npm i -g heroku`
+- Login: `heroku login`
+- CI should be set up. Any commit that successfully lands on `master` should kick off a Heroku build/redeploy
 - If migrations need to be re-run: `cat ./migrate.sql | heroku pg:psql`
