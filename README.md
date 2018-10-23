@@ -15,3 +15,4 @@ Node server to host an API for MediAR iOS app
 - Login: `heroku login`
 - CI should be set up. Any commit that successfully lands on `master` should kick off a Heroku build/redeploy
 - If migrations need to be re-run: `cat ./migrate.sql | heroku pg:psql`
+- Navigate to [https://mediar-api.herokuapp.com/api/scans](https://mediar-api.herokuapp.com/api/scans)
