@@ -12,3 +12,4 @@ Node server to host an API for MediAR iOS app
 
 ## Running on Heroku
 - CI should be set up: any commit that successfully lands on `master` should kick off a Heroku build/redeploy
+- If migrations need to be re-run: `cat ./migrate.sql | heroku pg:psql`
