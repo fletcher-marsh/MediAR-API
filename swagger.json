@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "title": "MediAR-API"
   },
-  "host": "mediar-api.herokuapp.com",
+  "host": "localhost:3000",
   "basePath": "/api",
   "tags": [
     {
@@ -65,10 +65,18 @@
         "produces": [
           "application/xml",
           "application/json"
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Scans"
+            }
+          }
+        }
       }
     },
-    "/scans/{id}": {
+    "/scans/id": {
       "get": {
         "tags": [
           "scans"
@@ -227,7 +235,7 @@
         ]
       }
     },
-    "/events/{id}": {
+    "/events/id": {
       "get": {
         "tags": [
           "events"
