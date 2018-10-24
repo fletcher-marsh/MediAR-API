@@ -116,9 +116,9 @@ function getAllEvents(req, res, next) {
 
 
 function getEventsByLocation(req, res, next) {
-  var lat = parseDouble(req.params.lat);
-  var long = parseDouble(req.params.long);
-  db.any('select * from events where distance(${lat},${long},lat,long) <= 1500')
+  var lat = parseFloat(req.params.lat);
+  var long = parseFloat(req.params.long);
+  db.any('select * from events where distance(lat,long,lat,long) <= 1500')
     .then(function (data) {
       res.status(200)
         .json({
@@ -147,8 +147,9 @@ function getSingleEvent(req, res, next) {
 }
 
 function createEvent(req, res, next) {
-  db.none('insert into events (media, preview, loc, lat, long, desc)' +
-      'values(${media}, ${preview}, ${loc}, ${lat}, ${long}, ${desc})',
+  console.log(req.body);
+  db.none('insert into events (media, preview, loc, lat, long, descrip)' +
+      'values(${media}, ${preview}, ${loc}, ${lat}, ${long}, ${descrip})',
     req.body)
     .then(function () {
       res.status(200)
@@ -163,8 +164,8 @@ function createEvent(req, res, next) {
 
 function updateEvent(req, res, next) {
   console.log(req.params, req.body);
-  db.none('update events set media=$1, preview=$2, loc=$3, lat=$4, long=$5, desc=$6, where id=$7',
-    [req.body.media, req.body.preview, req.body.loc, req.body.lat, req.body.long, req.body.desc, parseInt(req.params.id)])
+  db.none('update events set media=$1, preview=$2, loc=$3, lat=$4, long=$5, descrip=$6, where id=$7',
+    [req.body.media, req.body.preview, req.body.loc, req.body.lat, req.body.long, req.body.descrip, parseInt(req.params.id)])
     .then(function () {
       res.status(200)
         .json({
@@ -198,6 +199,20 @@ function removeEvent(req, res, next) {
 // -------------------------------------------------------
 
 
+function getTimesForEvent(req, res, next) {
+  var eID = req.params.id;
+  db.any(`select * from eventtimes as t join events as e on e.id = t.event_id where t.event_id = ${eID}`)
+    .then(function (data) {
+      res.status(200)
+        .json({
+          status: 'success',
+          data: data
+        });
+    })
+    .catch(function (err) {
+      return next(err);
+    });
+}
 
 function createEventTime(req, res, next) {
   db.none('insert into eventtimes (time, event_id)' +
@@ -255,11 +270,11 @@ module.exports = {
   updateScan: updateScan,
   removeScan: removeScan,
   getAllEvents: getAllEvents,
-  getEventsByLocation: getEventsByLocation,
   getSingleEvent: getSingleEvent,
   createEvent: createEvent,
   updateEvent: updateEvent,
   removeEvent: removeEvent,
+  getEventTimes: getTimesForEvent,
   createEventTime: createEventTime,
   updateEventTime: updateEventTime,
   removeEventTime: removeEventTime

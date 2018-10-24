@@ -16,7 +16,6 @@ router.delete('/api/scans/:id', db.removeScan);
 
 /* Event Endpoints */
 router.get('/api/events',db.getAllEvents);
-router.get('/api/events/:lat/:long', db.getEventsByLocation);
 router.get('/api/events/:id', db.getSingleEvent);
 router.post('/api/events', db.createEvent);
 router.put('/api/events/:id', db.updateEvent);
@@ -24,9 +23,10 @@ router.delete('/api/events/:id', db.removeEvent);
 
 
 /*Event Time Endpoints */
-router.post('/api/events', db.createEventTime);
-router.put('/api/events/:id', db.updateEventTime);
-router.delete('/api/events/:id', db.removeEventTime);
+router.get('/api/eventtimes/:id',db.getEventTimes);
+router.post('/api/eventtimes', db.createEventTime);
+router.put('/api/eventtimes/:id', db.updateEventTime);
+router.delete('/api/eventtimes/:id', db.removeEventTime);
 
 
 module.exports = router;
