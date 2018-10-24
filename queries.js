@@ -23,7 +23,6 @@ var db = pgp(connectionString);
 // -------------------------------------------------------
 
 function getAllScans(req, res, next) {
-  console.log('in all');
   db.any('select * from scans')
     .then(function (data) {
       res.status(200)
