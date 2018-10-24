@@ -65,7 +65,6 @@ function createScan(req, res, next) {
 }
 
 function updateScan(req, res, next) {
-  console.log(req.params, req.body);
   db.none('update scans set media=$1, loc=$2 where id=$3',
     [req.body.media, req.body.loc, parseInt(req.params.id)])
     .then(function () {
