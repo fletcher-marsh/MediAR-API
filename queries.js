@@ -6,7 +6,15 @@ var options = {
 };
 
 var pgp = require('pg-promise')(options);
-var connectionString = 'postgres://localhost:5432/mediar';
+
+var connectionString;
+if (process.env.NODE_ENV === "production") {
+  const { DATABASE_URL } = process.env
+  connectionString = DATABASE_URL;
+} else {
+  connectionString = 'postgres://localhost:5432/mediar';
+}
+
 var db = pgp(connectionString);
 
 
@@ -20,8 +28,7 @@ function getAllScans(req, res, next) {
       res.status(200)
         .json({
           status: 'success',
-          data: data,
-          message: 'Retrieved ALL Scans'
+          data: data
         });
     })
     .catch(function (err) {
@@ -36,8 +43,7 @@ function getSingleScan(req, res, next) {
       res.status(200)
         .json({
           status: 'success',
-          data: data,
-          message: 'Retrieved ALL Scans'
+          data: data
         });
     })
     .catch(function (err) {
@@ -52,8 +58,7 @@ function createScan(req, res, next) {
     .then(function () {
       res.status(200)
         .json({
-          status: 'success',
-          message: 'Inserted one scan'
+          status: 'success'
         });
     })
     .catch(function (err) {
@@ -68,8 +73,7 @@ function updateScan(req, res, next) {
     .then(function () {
       res.status(200)
         .json({
-          status: 'success',
-          message: 'Updated Scan'
+          status: 'success'
         });
     })
     .catch(function (err) {
@@ -84,8 +88,7 @@ function removeScan(req, res, next) {
       /* jshint ignore:start */
       res.status(200)
         .json({
-          status: 'success',
-          message: `Removed ${result.rowCount} Scan`
+          status: 'success'
         });
       /* jshint ignore:end */
     })
