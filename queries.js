@@ -6,15 +6,13 @@ var options = {
 };
 
 var pgp = require('pg-promise')(options);
-
 var connectionString;
 if (process.env.NODE_ENV === "production") {
   const { DATABASE_URL } = process.env
   connectionString = DATABASE_URL;
 } else {
-  connectionString = 'postgres://localhost:5432/mediar';
+  connectionString = 'postgres://localhost:5432/mediar'; 
 }
-
 var db = pgp(connectionString);
 
 
@@ -109,8 +107,7 @@ function getAllEvents(req, res, next) {
       res.status(200)
         .json({
           status: 'success',
-          data: data,
-          message: 'Retrieved ALL Scans'
+          data: data
         });
     })
     .catch(function (err) {
@@ -127,8 +124,7 @@ function getEventsByLocation(req, res, next) {
       res.status(200)
         .json({
           status: 'success',
-          data: data,
-          message: 'Retrieved Nearby Locations'
+          data: data
         });
     })
     .catch(function (err) {
@@ -143,8 +139,7 @@ function getSingleEvent(req, res, next) {
       res.status(200)
         .json({
           status: 'success',
-          data: data,
-          message: 'Retrieved an Event'
+          data: data
         });
     })
     .catch(function (err) {
@@ -159,8 +154,7 @@ function createEvent(req, res, next) {
     .then(function () {
       res.status(200)
         .json({
-          status: 'success',
-          message: 'Inserted one event'
+          status: 'success'
         });
     })
     .catch(function (err) {
@@ -175,8 +169,7 @@ function updateEvent(req, res, next) {
     .then(function () {
       res.status(200)
         .json({
-          status: 'success',
-          message: 'Updated Event'
+          status: 'success'
         });
     })
     .catch(function (err) {
@@ -191,8 +184,7 @@ function removeEvent(req, res, next) {
       /* jshint ignore:start */
       res.status(200)
         .json({
-          status: 'success',
-          message: `Removed ${result.rowCount} Event`
+          status: 'success'
         });
       /* jshint ignore:end */
     })
@@ -215,8 +207,7 @@ function createEventTime(req, res, next) {
     .then(function () {
       res.status(200)
         .json({
-          status: 'success',
-          message: 'Inserted one event'
+          status: 'success'
         });
     })
     .catch(function (err) {
@@ -231,8 +222,7 @@ function updateEventTime(req, res, next) {
     .then(function () {
       res.status(200)
         .json({
-          status: 'success',
-          message: 'Updated Scan'
+          status: 'success'
         });
     })
     .catch(function (err) {
@@ -247,8 +237,7 @@ function removeEventTime(req, res, next) {
       /* jshint ignore:start */
       res.status(200)
         .json({
-          status: 'success',
-          message: `Removed ${result.rowCount} Event`
+          status: 'success'
         });
       /* jshint ignore:end */
     })

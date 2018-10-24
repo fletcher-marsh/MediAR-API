@@ -12,18 +12,8 @@ INSERT INTO scans (media, loc, time)
 
 
 
-DROP TABLE IF EXISTS eventtimes;
-CREATE TABLE eventtimes {
-	ID SERIAL PRIMARY KEY,
-	time DATETIME,
-	event_id integer,
-	constraint fk_eventtimes_events
-	    foreign key (event_id)
-	    REFERENCES events (ID)
-};
 
-
-DROP TABLE IF EXISTS events;
+DROP TABLE IF EXISTS events CASCADE;
 CREATE TABLE events (
 	ID SERIAL PRIMARY KEY,
 	media VARCHAR,
@@ -31,11 +21,21 @@ CREATE TABLE events (
 	loc VARCHAR,
 	lat double precision,
 	long double precision,
-	desc VARCHAR
+	descrip VARCHAR
+);
+
+DROP TABLE IF EXISTS eventtimes;
+CREATE TABLE eventtimes (
+    ID SERIAL PRIMARY KEY,
+    time timestamp,
+    event_id integer,
+    constraint fk_eventtimes_events
+        foreign key (event_id)
+        REFERENCES events (ID)
 );
 
 
-CREATE OR REPLACE FUNCTION distance(lat1, long1, lat2, long2) RETURNS double precision LANGUAGE plpgsql AS $$
+CREATE OR REPLACE FUNCTION distance(lat1 double precision, long1 double precision,lat2 double precision, long2 double precision) RETURNS double precision LANGUAGE plpgsql AS $$
     DECLARE
     	latdiff double precision;
     	longdiff double precision;
@@ -52,7 +52,7 @@ CREATE OR REPLACE FUNCTION distance(lat1, long1, lat2, long2) RETURNS double pre
     END $$;
 
 
-INSERT INTO events (media, preview, loc, lat, long, desc)
+INSERT INTO events (media, preview, loc, lat, long, descrip)
   VALUES ('AcaPitt', '','Mellon Institute', 40.446172, -79.951027, 'Come to the Acapella Concert on this Friday, October 26th!');
 
 
