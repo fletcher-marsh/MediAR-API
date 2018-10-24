@@ -405,7 +405,7 @@
         "preview": {
           "type": "string"
         },
-        "desc": {
+        "descrip": {
           "type": "string"
         }
       },
