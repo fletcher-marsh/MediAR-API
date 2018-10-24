@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "title": "MediAR-API"
   },
-  "host": "localhost:3000",
+  "host": "mediar-api.herokuapp.com",
   "basePath": "/api",
   "tags": [
     {
