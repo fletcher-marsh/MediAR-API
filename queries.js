@@ -94,10 +94,185 @@ function removeScan(req, res, next) {
     });
 }
 
+
+
+// -------------------------------------------------------
+// User Event Queries
+// -------------------------------------------------------
+
+function getAllEvents(req, res, next) {
+  db.any('select * from events')
+    .then(function (data) {
+      res.status(200)
+        .json({
+          status: 'success',
+          data: data,
+          message: 'Retrieved ALL Scans'
+        });
+    })
+    .catch(function (err) {
+      return next(err);
+    });
+}
+
+
+function getEventsByLocation(req, res, next) {
+  var lat = parseDouble(req.params.lat);
+  var long = parseDouble(req.params.long);
+  db.any('select * from events where distance(${lat},${long},lat,long) <= 1500')
+    .then(function (data) {
+      res.status(200)
+        .json({
+          status: 'success',
+          data: data,
+          message: 'Retrieved Nearby Locations'
+        });
+    })
+    .catch(function (err) {
+      return next(err);
+    });
+}
+
+function getSingleEvent(req, res, next) {
+  var eID = req.params.id;
+  db.any(`select * from events where id = ${eID}`)
+    .then(function (data) {
+      res.status(200)
+        .json({
+          status: 'success',
+          data: data,
+          message: 'Retrieved an Event'
+        });
+    })
+    .catch(function (err) {
+      return next(err);
+    });
+}
+
+function createEvent(req, res, next) {
+  db.none('insert into events (media, preview, loc, lat, long, desc)' +
+      'values(${media}, ${preview}, ${loc}, ${lat}, ${long}, ${desc})',
+    req.body)
+    .then(function () {
+      res.status(200)
+        .json({
+          status: 'success',
+          message: 'Inserted one event'
+        });
+    })
+    .catch(function (err) {
+      return next(err);
+    });
+}
+
+function updateEvent(req, res, next) {
+  console.log(req.params, req.body);
+  db.none('update events set media=$1, preview=$2, loc=$3, lat=$4, long=$5, desc=$6, where id=$7',
+    [req.body.media, req.body.preview, req.body.loc, req.body.lat, req.body.long, req.body.desc, parseInt(req.params.id)])
+    .then(function () {
+      res.status(200)
+        .json({
+          status: 'success',
+          message: 'Updated Event'
+        });
+    })
+    .catch(function (err) {
+      return next(err);
+    });
+}
+
+function removeEvent(req, res, next) {
+  var eID = parseInt(req.params.id);
+  db.result('delete from events where id = $1', eID)
+    .then(function (result) {
+      /* jshint ignore:start */
+      res.status(200)
+        .json({
+          status: 'success',
+          message: `Removed ${result.rowCount} Event`
+        });
+      /* jshint ignore:end */
+    })
+    .catch(function (err) {
+      return next(err);
+    });
+}
+
+
+// -------------------------------------------------------
+// User Event Time Queries
+// -------------------------------------------------------
+
+
+
+function createEventTime(req, res, next) {
+  db.none('insert into eventtimes (time, event_id)' +
+      'values(${time}, ${event_id})',
+    req.body)
+    .then(function () {
+      res.status(200)
+        .json({
+          status: 'success',
+          message: 'Inserted one event'
+        });
+    })
+    .catch(function (err) {
+      return next(err);
+    });
+}
+
+function updateEventTime(req, res, next) {
+  console.log(req.params, req.body);
+  db.none('update eventtimes set time=$1, where id=$2 and event_id=$3',
+    [req.body.media, req.body.loc, parseInt(req.params.id)])
+    .then(function () {
+      res.status(200)
+        .json({
+          status: 'success',
+          message: 'Updated Scan'
+        });
+    })
+    .catch(function (err) {
+      return next(err);
+    });
+}
+
+function removeEventTime(req, res, next) {
+  var eID = parseInt(req.params.id);
+  db.result('delete from events where id = $1', eID)
+    .then(function (result) {
+      /* jshint ignore:start */
+      res.status(200)
+        .json({
+          status: 'success',
+          message: `Removed ${result.rowCount} Event`
+        });
+      /* jshint ignore:end */
+    })
+    .catch(function (err) {
+      return next(err);
+    });
+}
+
+
+
+
 module.exports = {
   getAllScans: getAllScans,
   getSingleScan: getSingleScan,
   createScan: createScan,
   updateScan: updateScan,
-  removeScan: removeScan
+  removeScan: removeScan,
+  getAllEvents: getAllEvents,
+  getEventsByLocation: getEventsByLocation,
+  getSingleEvent: getSingleEvent,
+  createEvent: createEvent,
+  updateEvent: updateEvent,
+  removeEvent: removeEvent,
+  createEventTime: createEventTime,
+  updateEventTime: updateEventTime,
+  removeEventTime: removeEventTime
 };
+
+
+
