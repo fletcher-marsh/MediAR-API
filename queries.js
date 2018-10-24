@@ -23,6 +23,7 @@ var db = pgp(connectionString);
 // -------------------------------------------------------
 
 function getAllScans(req, res, next) {
+  console.log('in all');
   db.any('select * from scans')
     .then(function (data) {
       res.status(200)
@@ -67,7 +68,6 @@ function createScan(req, res, next) {
 }
 
 function updateScan(req, res, next) {
-  console.log(req.params, req.body);
   db.none('update scans set media=$1, loc=$2 where id=$3',
     [req.body.media, req.body.loc, parseInt(req.params.id)])
     .then(function () {
