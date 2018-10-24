@@ -19,6 +19,30 @@
   ],
   "paths": {
     "/scans": {
+      "get": {
+        "tags": [
+          "scans"
+        ],
+        "summary": "See all scans",
+        "description": "",
+        "operationId": "allScans",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Scans"
+            }
+          }
+        }
+      },
       "post": {
         "tags": [
           "scans"
@@ -48,30 +72,6 @@
         "responses": {
           "405": {
             "description": "Invalid input"
-          }
-        }
-      },
-      "get": {
-        "tags": [
-          "scans"
-        ],
-        "summary": "See all scans",
-        "description": "",
-        "operationId": "allScans",
-        "consumes": [
-          "application/json",
-          "application/xml"
-        ],
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$ref": "#/definitions/Scans"
-            }
           }
         }
       }
@@ -186,6 +186,30 @@
 
 
     "/events": {
+      "get": {
+        "tags": [
+          "events"
+        ],
+        "summary": "See all events",
+        "description": "",
+        "operationId": "allEvents",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Events"
+            }
+          }
+        }
+      },
       "post": {
         "tags": [
           "events"
@@ -217,22 +241,6 @@
             "description": "Invalid input"
           }
         }
-      },
-      "get": {
-        "tags": [
-          "events"
-        ],
-        "summary": "See all events",
-        "description": "",
-        "operationId": "allEvents",
-        "consumes": [
-          "application/json",
-          "application/xml"
-        ],
-        "produces": [
-          "application/xml",
-          "application/json"
-        ]
       }
     },
     "/events/id": {
