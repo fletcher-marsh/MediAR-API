@@ -148,7 +148,7 @@ function getSingleEvent(req, res, next) {
 
 function createEvent(req, res, next) {
   console.log(req.body);
-  db.none('insert into events (media, preview, loc, lat, long, descrip)' +
+  db.none('insert into events (media, preview, loc, lat, long, imgurkey, descrip)' +
       'values(${media}, ${preview}, ${loc}, ${lat}, ${long}, ${imgurkey}, ${descrip})',
     req.body)
     .then(function () {
