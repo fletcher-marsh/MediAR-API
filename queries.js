@@ -149,7 +149,7 @@ function getSingleEvent(req, res, next) {
 function createEvent(req, res, next) {
   console.log(req.body);
   db.none('insert into events (media, preview, loc, lat, long, descrip)' +
-      'values(${media}, ${preview}, ${loc}, ${lat}, ${long}, ${descrip})',
+      'values(${media}, ${preview}, ${loc}, ${lat}, ${long}, ${imgurkey}, ${descrip})',
     req.body)
     .then(function () {
       res.status(200)
@@ -164,8 +164,8 @@ function createEvent(req, res, next) {
 
 function updateEvent(req, res, next) {
   console.log(req.params, req.body);
-  db.none('update events set media=$1, preview=$2, loc=$3, lat=$4, long=$5, descrip=$6, where id=$7',
-    [req.body.media, req.body.preview, req.body.loc, req.body.lat, req.body.long, req.body.descrip, parseInt(req.params.id)])
+  db.none('update events set media=$1, preview=$2, loc=$3, lat=$4, long=$5, imgurkey=$6, descrip=$7, where id=$8',
+    [req.body.media, req.body.preview, req.body.loc, req.body.lat, req.body.long, req.body.imgurkey, req.body.descrip, parseInt(req.params.id)])
     .then(function () {
       res.status(200)
         .json({
@@ -201,7 +201,7 @@ function removeEvent(req, res, next) {
 
 function getTimesForEvent(req, res, next) {
   var eID = req.params.id;
-  db.any(`select * from eventtimes as t join events as e on e.id = t.event_id where t.event_id = ${eID}`)
+  db.any(`select e.media, t.time from eventtimes as t join events as e on e.id = t.event_id where t.event_id = ${eID}`)
     .then(function (data) {
       res.status(200)
         .json({

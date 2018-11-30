@@ -21,6 +21,7 @@ CREATE TABLE events (
 	loc VARCHAR,
 	lat double precision,
 	long double precision,
+    imgurkey VARCHAR,
 	descrip VARCHAR
 );
 
@@ -52,8 +53,8 @@ CREATE OR REPLACE FUNCTION distance(lat1 double precision, long1 double precisio
     END $$;
 
 
-INSERT INTO events (media, preview, loc, lat, long, descrip)
-  VALUES ('AcaPitt', '','Mellon Institute', 40.446172, -79.951027, 'Come to the Acapella Concert on this Friday, October 26th!');
+INSERT INTO events (media, preview, loc, lat, long, imgurkey, descrip)
+  VALUES ('AcaPitt', '','Mellon Institute', 40.446172, -79.951027, "pCEoGjF.jpg", 'Come to the Acapella Concert on this Friday, October 26th!');
 
 
 INSERT INTO eventtimes (time, event_id)

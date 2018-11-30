@@ -405,6 +405,9 @@
         "preview": {
           "type": "string"
         },
+         "imgurkey": {
+          "type": "string"
+        },
         "descrip": {
           "type": "string"
         }
