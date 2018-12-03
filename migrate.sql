@@ -55,8 +55,8 @@ CREATE OR REPLACE FUNCTION distance(lat1 double precision, long1 double precisio
 
 INSERT INTO events (media, preview, loc, lat, long, imgurkey, descrip)
   VALUES ('AcaPitt', '','Mellon Institute', 40.446172, -79.951027, 'pCEoGjF.jpg', 'Come to the Acapella Concert on this Friday, October 26th!'),
-  ('Grinch', 'Bf6D-i8YpHg','Mellon Institute', 40.446172, -79.951027, '8j3xs9b.jpg', 'Come to the Acapella Concert on this Friday, October 26th!')
-  ('Mad Max', 'KELy4064dHw','Mellon Institute', 40.446172, -79.951027, '0pk9UNw.jpg', 'Come to the Acapella Concert on this Friday, October 26th!')
+  ('Grinch', 'Bf6D-i8YpHg','Mellon Institute', 40.446172, -79.951027, '8j3xs9b.jpg', 'Come to the Acapella Concert on this Friday, October 26th!'),
+  ('Mad Max', 'KELy4064dHw','Mellon Institute', 40.446172, -79.951027, '0pk9UNw.jpg', 'Come to the Acapella Concert on this Friday, October 26th!'),
   ('Venom', 'xLCn88bfW1o','Mellon Institute', 40.446172, -79.951027, 'BJKsSwg.jpg', 'Come to the Acapella Concert on this Friday, October 26th!');
 
 INSERT INTO eventtimes (time, event_id)
