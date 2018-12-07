@@ -92,5 +92,5 @@ EMPLOYERS INTERESTED IN ATTENDING THIS EVENT?
 
 We have received hundreds of job seeker registrations for this event contact us today to reserve a spot at this event for your company.');
 
-#INSERT INTO eventtimes (time, event_id)
-#  VALUES (CURRENT_DATE, 1);
+--INSERT INTO eventtimes (time, event_id)
+-- VALUES (CURRENT_DATE, 1);
