@@ -57,7 +57,7 @@ INSERT INTO events (media, preview, loc, lat, long, imgurkey, descrip)
   VALUES ('How the Grinch Stole Christmas', 'Bf6D-i8YpHg','Target', 40.468317, -79.922250, '8j3xs9b.jpg', 'On the outskirts of Whoville, there lives a green, revenge-seeking Grinch who plans on ruining the Christmas holiday for all of the citizens of the town.'),
   ('Mad Max Fury Road', 'KELy4064dHw','Target', 40.468317, -79.922250, 'Opk9UNw.jpg', 'In a self-destructing world, a vengeful Australian policeman sets out to stop a violent motorcycle gang.'),
   ('Venom', 'xLCn88bfW1o','AMC Waterfront 22', 40.24255, -79.55059, 'BJKsSwg.jpg', 'Journalist Eddie Brock is trying to take down Carlton Drake, the notorious and brilliant founder of the Life Foundation. While investigating one of Drakes experiments, Eddies body merges with the alien Venom -- leaving him with superhuman strength and power. Twisted, dark and fueled by rage, Venom tries to control the new and dangerous abilities that Eddie finds so intoxicating.'),
-  ('Job Expo', 'isYZ82GYI5M','', 40.418785, -80.059470, 'BJKsSwg.jpg', 'WHY YOU SHOULD ATTEND OUR PITTSBURGH CAREER FAIR
+  ('Job Expo', 'isYZ82GYI5M','', 40.418785, -80.059470, 'fyaqPIz.png', 'WHY YOU SHOULD ATTEND OUR PITTSBURGH CAREER FAIR
 
 Open the doors of opportunity when you meet and interview with the top hiring companies in Pittsburgh. This career fair will allow you to learn about the businesses that are hiring and what their hiring needs are. Tired of sending your resume over the web to get no responses back? Put a face with a name and make a great first impression. Register today, and you could get hired live at our next career fair in Pittsburgh.
 
